@@ -1,5 +1,14 @@
-## Hi there 👋
+## Hi, I'm Juan David De Aza Mejia (SOC Analyst and Purple team Aspirant) 👋
 
+Administrative and technical dashboard for tracking my Cybersecurity academic path at ITLA, professional certifications, and hands-on laboratory deployments.
+
+Academic Term Tracker (Current Quarter)
+
+
+## 🎯 Continuous Training & Certifications
+* **Cisco CCNA 1**: 🏆 Completed*
+*  **HTB Academy (CJCA Path)**: ⚡ In Progress
+*  * **Certified cibersecurity CC ISC2**: Certified!
 <!--
 **JuanDeAzaSec/JuanDeAzaSec** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
