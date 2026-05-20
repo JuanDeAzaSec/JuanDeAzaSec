@@ -9,17 +9,15 @@ Academic Term Tracker (Current Quarter)
 * **Cisco CCNA 1**: 🏆 Completed*
 *  **HTB Academy (CJCA Path)**: ⚡ In Progress
 *  * **Certified cibersecurity CC ISC2**: Certified!
-<!--
-**JuanDeAzaSec/JuanDeAzaSec** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+# SO3: Linux Administration 
 
-Here are some ideas to get you started:
+Welcome to my repository for the **Sistemas Operativos III (SO3)** course at ITLA. This space serves as a technical vault for all laboratory assignments, shell commands, and system administration tasks implemented throughout the academic term.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## 🎯 Repository Goals
+* Document core Linux administration commands (File system, user management, permissions, and processes).
+* Apply a **Blue Team** approach to operating system hardening.
+* Maintain version control of configurations and system scripts.
+
+## 🛠️ Environment Specifications
+* **OS Target:** Red Hat Enterprise Linux (RHEL) / Fedora Environment
+* **Documentation Standard:** Markdown
