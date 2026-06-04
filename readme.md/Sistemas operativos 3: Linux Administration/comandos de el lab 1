@@ -1,0 +1,45 @@
+ip a
+sudo nmcli connection modify ens160 ipv4.method auto
+sudo nmcli connection up ens160
+sudo nmcli connection modify ens160 ipv4.addresses 192.168.100.200/24 ipv4.gateway 192.168.100.1 ipv4.dns "8.8.8.8,8.8.4.4" ipv4.method manual
+sudo nmcli connection down ens160
+sudo nmcli connection up ens160
+sudo nmtui
+sudo dnf update
+sudo dnf upgrade
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  sudo useradd adrian
+ls /home
+  sudo usermod -aG wheel adrian
+id adrian
+sudo groupadd Guest
+sudo useradd juan
+sudo usermod -aG Guest juan
+id juan
+sudo userdel -r juan
+ls /home
+sudo groupdel Guest
+grep Guest /etc/group
+  -------------------------------------------------------------------------------------------------------------------------------------------------------------
+  mkdir materia
+cd materia
+touch estudiantes.txt
+  ls
+ls -l
+  vim estudiantes.txt
+cat estudiantes.txt
+  chmod u+x,g-r,o-r estudiantes.txt
+  ls -l
+  cp estudiantes.txt estudiantes2.txt
+  mv estudiantes2.txt ../
+cd ..
+  mkdir materia2
+mv estudiantes2.txt /home/jdeaza/materia2
+  cd materia2
+ls
+cd ..
+rm -rf materia
+rm -rf materia2 materia3
+ls
+----------------------------------------------------------------------------------------------------------------------------------------------------
+  
