@@ -1,0 +1,52 @@
+cd /etc
+102  ls
+103  cd default/
+104  ls
+105  sudo vim grub
+106  ls
+107  cd ..
+108  ls
+109  grep grub
+110  grep ed
+111  sudo grub2-mkconfig ?
+112  sudo grub2-mkconfig
+113  sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+114  sudo grub2
+115  sudo grub2-editenv - unset menu_auto_hide
+116  sudo grub2-editenv list
+117  sudo reboot
+
+init=/bin/bash
+
+passwd root
+
+touch /.autorelabel
+
+sync
+118  su
+119  clear
+
+---
+
+---
+
+vim backup.sh
+127  ./backup.sh
+128  ls -l
+129  chmod +u backup.sh
+130  ls -l
+131  chmod u+ backup.sh
+132  ls -l
+133  chmod x+ backup.sh
+134  chmod +x backup.sh
+135  ls -l
+136  ./backup.sh
+137  sudo vim ifconf.sh
+138  vim ifconf.sh
+139  chmod +x ifconf.sh
+140  ls -l
+141  ./ifconf.sh
+142  ls
+143  cd Desktop
+144  ls
+145  cat Alcantara
