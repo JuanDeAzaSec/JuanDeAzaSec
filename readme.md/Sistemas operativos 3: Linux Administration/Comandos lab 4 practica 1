@@ -1,0 +1,69 @@
+ sudo su
+  110  date +%R
+  111  date +%x
+  112  sudo su
+  113  ip a
+  114  sudo su
+  115  sudo dnf update && sudo dnf upgrade -y
+  116  sudo dnf install httpd
+  117  locate httpd
+  118  clear
+  119  ip a
+  120  sudo nmtui
+  121  ip a
+  122  ping -c 4 google.com
+  123  clear
+  124  hostname
+  125  hostnamectl set-hostname david.do
+  126  hostname
+  127  cd  /etc/httpd/conf
+  128  ls
+  129  sudo vim httpd.conf 
+  130  firewall-cmd --permanent --add-port=80/tcp
+  131  firewall-cmd --permanent --add-port=8080/tcp
+  132  firewall-cmd --list-all
+  133  firewall-cmd --permanent --add-port=8080/tcp
+  134  ip a
+  135  history 
+  136  ping -c 4 google.com
+  137  clear
+  138  firewall-cmd --permanent --add-port=80/tcp
+  139  firewall-cmd --list-all
+  140  firewall-cmd --reload 
+  141  firewall-cmd --list-all
+  142  systemctl status httpd
+  143  systemctl start httpd
+  144  systemctl status httpd
+  145  systemctl enable httpd
+  146  sudo vim /etc/hosts
+  147  cd /var/www/html
+  148  ls
+  149  cd ..
+  150  ls
+  151  cd html
+  152  mkdir matricula | mkdir hola
+  153  sudo mkdir matricula | mkdir hola
+  154  sudo mkdir hola
+  155  ls
+  156  echo "<h1>Juan David De Aza Mejia 2025-2720 Sistemas operativos 3</h1>" > matricula/index.html
+  157  sudo echo "<h1>Juan David De Aza Mejia 2025-2720 Sistemas operativos 3</h1>" > matricula/index.html
+  158  cd matricula/
+  159  sudo echo "<h1>Juan David De Aza Mejia 2025-2720 Sistemas operativos 3</h1>" > index.html
+  160  sudo echo"<h1>Juan David De Aza Mejia 2025-2720 Sistemas operativos 3</h1>" > index.html
+  161  touch index.html
+  162  cd ..
+  163  ls
+  164  cd html/
+  165  LS
+  166  ls
+  167  touch index.html
+  168  sudo touch index.html
+  169  ls
+  170  cd hola
+  171  cd ..
+  172  cd matricula/
+  173  touch index.html
+  174  sudo touch index.html
+  175  sudo echo "<h1>Juan David De Aza Mejia 2025-2720 Sistemas operativos 3</h1>" > index.html 
+  176  sudo su
+  177  locate httpd
