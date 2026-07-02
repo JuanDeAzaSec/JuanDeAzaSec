@@ -1,0 +1,79 @@
+mkdir carpeta_1sin
+  285  touch archivo{001..100}.txt /home/jdeaza/carpeta_1sin/
+  286  ls carpeta_1sin/
+  287  ls
+  288  mv *txt /home/jdeaza/carpeta_1sin/
+  289  ls carpeta_1sin/
+  290  ping -c 4 192.168.100.43
+  291  ssh-keygen -t rsa
+  292  cd .shh
+  293  ls 
+  294  ls -a
+  295  cd .ssh
+  296  ls 
+  297  cat id_rsa.pub 
+  298  ssh jdeaza@192.168.100.43
+  299  rsync -av /home/jdeaza/carpeta_1sin/ jdeaza@192.168.100.43:/home/jdeaza/carpeta_2sin
+  300  cc ..
+  301  cd ..
+  302  ls 
+  303  vim sincronizacion.sh
+  304  ls
+  305  ls -l
+  306  chmod +x sincronizacion.sh 
+  307  ls -l
+  308  crontab -e
+  309  crontab -l
+  310  cd carpeta_1sin/
+  311  ls 
+  312  rm archivo100.txt
+  313  ls
+  314  crontab -l
+  315  cd ..
+  316  ls 
+  317  crontab -e
+  318  crontab -l
+  319  ls carpeta_1sin/
+  320  crontab -l
+  321  ls 
+  322  vim sincronizacion.sh 
+  323  crontab -l
+  324  vim sincronizacion.sh
+  325  ls carpeta_1sin/
+  326  crontab -l
+  327  ping -c 4 server2.do 
+  sudo vim /etc/hosts
+  374  sudo subscription-manager repos --enable=rhel-10-for-x86_64-highavailability-rpms~
+  375  sudo subscription-manager repos --enable=rhel-10-for-x86_64-highavailability-rpms
+  376  sudo dnf install -y pcs pacemaker fenge-agents-all
+  377  sudo dnf install -y pcs pacemaker fence-agents-all
+  378  sudo systemctl enable --now pcsd
+  379  sudo passwd hacluster
+  380  sudo firewall-cmd --permanent --add-service=high-availability 
+  381  sudo firewall-cmd --reload 
+  382  sudo pcs host auth server1.do server2.do -u haclcluster
+  383  sudo pcs host auth server1.do server2.do -u hacluster
+  384  sudo vim /etc/hosts
+  385  sudo pcs host auth server1.do server2.do -u hacluster
+  386  sudo pcs cluster setup cluster_rhel10 server1.do server2.do
+  387  sudo pcs cluster start --all
+  388  sudo pcs cluster enable --all
+  389  sudo pcs property set -stonith-enabled=false
+  390  sudo pcs property set stonith-enabled=false
+  391  sudo pcs property set no-quorum-policy=false
+  392  sudo pcs property set no-quorum-policy=ignore
+  393  sudo pcs resource create IP_Flotante ocf:heartbet: IPaddr2 ip=192.168.1.100 cid r_netmask=24 op monitor interval=30s
+  394  sudo pcs resource create IP_Flotante ocf:heartbet: IPaddr ip=192.168.1.100 cid r_netmask=24 op monitor interval=30s
+  395  sudo pcs resource create IP_Flotante ocf:heartbet: IPaddr2 ip=192.168.1.100 cid r_netmask=24 op monitor interval=30s
+  396  sudo pcs resource create IP_Flotante ocf:heartbet:IPaddr2 ip=192.168.1.100 cid r_netmask=24 op monitor interval=30s
+  397  sudo pcs resource create IP_Flotante ocf:heartbet: IPaddr2 ip=192.168.1.100 cidr_netmask=24 op monitor interval=30s
+  398  sudo pcs resource create IP_Flotante ocf:heartbet:IPaddr2 ip=192.168.1.100 cidr_netmask=24 op monitor interval=30s
+  399  sudo pcs resource create IP_Flotante ocf:heartbet:IPadd r2 ip=192.168.1.100 cidr_netmask=24 op monitor interval=30s
+  400  sudo pcs resource create IP_Flotante ocf:heartbeat:IPaddr2 ip=192.168.1.100 cidr_netmask=24 op monitor interval=30s
+  401  sudo pcs resource create IP_Flotante ocf:heartbeat:IPaddr2 ip=192.168.100.200 cidr_netmask=24 op monitor interval=30s
+  402  sudo pcs status
+  403  sudo pcs resource delete IP_Flotante
+  404  sudo pcs resource create IP_Flotante ocf:heartbeat:IPaddr2 ip=192.168.1.100 cidr_netmask=24 nic=ens160 op monitor interval=30s
+  405  sudo pcs resource cleanup IP_Flotante
+  406  sudo pcs status
+  407  history
