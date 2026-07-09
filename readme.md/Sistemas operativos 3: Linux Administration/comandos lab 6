@@ -1,0 +1,126 @@
+<server 2>
+sudo dnf install gnupg2
+  378  ip a
+  379  clear
+  380  sudo dnf install gnupg2
+  381  sudo dnf update && sudo dnf upgrade
+  382  sudo dnf install gnupg2
+  383  gpg2 -d /tmp/asimetrico.txt.gpg
+  384  cd /tmp/
+  385  ls
+  386  gpg2 -d simetrico.txt.gpg
+  387  clear
+  388  cd ~
+  389  gpg2 --generate-key
+  390  gpg2 --export -a "server2" > /tmp/ser2_publica.asc
+  391  scp /tmp/ser2_publica.asc jdeaza@192.168.49.129:/tmp/
+  392  cd /tmp/
+  393  ls
+  394  gpg2 -d asimetrico.txt.gpg 
+  395  clear
+  396  cd ~
+  397  ls
+  398  curl --max-time 3 http://192.168.49.129
+  399  clear
+  400  curl --max-time 3 http://192.168.49.129
+  401  curl --max-time 3 ftp://192.168.49.129
+  402  ssh -o ConnectTimeout=3 jdeaza@192.168.49.129
+  403  curl --max-time 3 http://192.168.49.129
+  404  curl --max-time 3 ftp://192.168.49.129
+  405  ssh -o ConnectTimeout=3 jdeaza@192.168.49.129
+  406  claer
+  407  clear
+  408  ssh -o ConnectTimeout=3 jdeaza@192.168.49.129
+  409  curl --max-time 3 ftp://192.168.49.129
+  410  curl --max-time 3 http://192.168.49.129
+  411  ssh -o ConnectTimeout=3 jdeaza@192.168.49.129
+  412  curl --max-time 3 http://192.168.49.129 
+########################################################################################
+<SERVER 1>
+  489  ip a
+  490  clear
+  491  sudo dnf install gnugp2
+  492  sudo dnf install gnupg2
+  493  ls
+  494  cd ~
+  495  ls
+  496  mkdir -p practica1_lab6
+  497  ls 
+  498  locate practica1_
+  499  ls 
+  500  mkdir practica1_lab6
+  501  ls
+  502  cd /
+  503  ls
+  504  cd home
+  505  ls
+  506  cd jdeaza/
+  507  ls
+  508  ls -a
+  509  tree
+  510  cd practica1_lab6/
+  511  echo "Este tecto va ha ser el cifrado por que es un pollito" > simetrico.txt
+  512  ls
+  513  cat simetrico.txt 
+  514  gpg2 -c simetrico.txt 
+  515  ls 
+  516  rm simetrico.txt
+  517  ls
+  518  cat simetrico.txt.gpg 
+  519  scp simetrico.txt.gpg jdeaza@192.168.49.131:/tmp/
+  520  clear
+  521  gpg2 --import /tmp/ser2_publica.asc 
+  522  ls
+  523  echo "Este es el cifrado asimetrico amarillito" > asimetrico.txt
+  524  ls
+  525  cat asimetrico.txt 
+  526  gpg2 -e -r "server2" asimetrico.txt 
+  527  ls
+  528  cat asimetrico.txt.gpg 
+  529  scp asimetrico.txt.gpg jdeaza@192.168.49.131:/tmp/
+  530  clear
+  531  cd ..
+  532  ls
+  533  clear
+  534  sudo dnf install -y httpd vsftpd openssh-server curl
+  535  sudo systemctl start httpd vsftpd openssh-server curl
+  536  sudo systemctl start httpd vsftpd 
+  537  sudo systemctl start vsftpd 
+  538  sudo systemctl status httpd
+  539  cd /etc/httpd/
+  540  ls
+  541  cd conf
+  542  ls
+  543  sudo vim httpd.conf 
+  544  cd ..
+  545  ls 
+  546  cd conf.d
+  547  ls
+  548  sudo vim matricula.conf 
+  549  sudo systemctl status httpd
+  550  sudo systemctl restart httpd.s
+  551  sudo systemctl restart httpd
+  552  sudo systemctl status httpd
+  553  sudo systemctl status vsftpd.
+  554  sudo systemctl status vsftpd
+  555  cd ~
+  556  ls
+  557  clear
+  558  sudo systemctl status httpd vsftpd sshd
+  559  clear
+  560  sudo iptables -A INPUT -p tpc --dport 80 -j DROP
+  561  sudo iptables -A INPUT -p tcp --dport 80 -j DROP
+  562  sudo iptables -A INPUT -p tcp --dport 21 -j DROP
+  563  sudo iptables -A INPUT -p tcp --dport 22 -j DROP
+  564  sudo iptables -L INPUT -n -v
+  565  sudo iptables -F
+  566  sudo iptables -L INPUT -n -v
+  567  clear
+  568  firewall-cmd --add-rich-rule='rule family="ipv4" port port="80" protocol="tcp" drop' 
+  569  firewall-cmd --add-rich-rule='rule family="ipv4" port port="21" protocol="tcp" drop' 
+  570  firewall-cmd --add-rich-rule='rule family="ipv4" port port="22" protocol="tcp" drop' 
+  571  firewall-cmd --list-all
+  572  firewall-cmd --remove--rich-rule='rule family="ipv4" port port="80" protocol="tcp" drop' 
+  573  firewall-cmd --remove-rich-rule='rule family="ipv4" port port="80" protocol="tcp" drop' 
+  574  firewall-cmd --remove-rich-rule='rule family="ipv4" port port="21" protocol="tcp" drop' 
+  575  firewall-cmd --remove-rich-rule='rule family="ipv4" port port="22" protocol="tcp" drop'
