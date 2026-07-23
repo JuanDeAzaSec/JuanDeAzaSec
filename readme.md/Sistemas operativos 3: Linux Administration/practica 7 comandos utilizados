@@ -1,0 +1,91 @@
+video de nfs
+maquina server
+
+476  sudo dnf install -y nfs-utils
+477  sudo systemctl enable --now nfs-server
+478  mkdir -p /OS3
+479  sudo mkdir -p /OS3
+480  locate OS3
+481  cd /
+482  ls
+483  touch Adrian{1..100}.txt /OS3
+484  sudo touch Adrian{1..100}.txt /OS3
+485  ls /OS3
+486  cd OS3/
+487  ls
+488  cd ..
+489  ls
+490  mv Adrian* /OS3
+491  sudo mv Adrian* /OS3
+492  ls OS3/
+493  sudo chmod -R 777 /OS3
+494  ls
+495  ls -la
+496  clear
+497  sudo chcon -R -t nfs_t /OS3
+498  vim /etc/exports
+499  sudo vim /etc/exports
+500  sudo export -raw
+501  sudo /etc/export -raw
+502  sudo exportfs -raw
+503  sudo exportfs -rav
+504  sudo firewall-cmd --permanent --add-service=nfs
+505  sudo firewall-cmd --permanent --add-service=mountd
+506  sudo firewall-cmd --permanent --add-service=rpc-bind
+507  sudo firewall-cmd --reload
+508  ip a
+509  history
+
+maquina cliente
+
+ip a
+377  sudo dnf install -y nfs-utils
+378  sudo mkdir -p /mnt/nfs_OS3
+379  sudo nmcli connection down ens160 && sudo nmcli connection up ens160
+380  ip a
+381  sudo nmcli connection down ens160 && sudo nmcli connection up ens160
+382  ip a
+383  sudo mount -t nfs 192.168.118.128:/OS3 /mnt/nfs_OS3/
+384  ls -la /mnt/nfs_OS3/
+385  sudo vim /etc/fstab
+386  sudo umount /mnt/nfs_OS3
+387  sudo -a
+388  sudo mount -a
+389  systemctl daemon-reload
+390  sudo mount -a
+391  ip a
+392  clear
+393  ls -la /mnt/nfs_OS3/
+394  history
+
+ Creacion de fileserver compatible con Windows utilizando SAMBA
+ sudo dnf install -y samba samba-client
+477  sudo
+478  sudo mkdir -p /samba/OS3
+479  sudo groupadd smbgroup
+480  sudo chmod -R 777 /samba/OS3/
+481  touch adrian{001..100}.txt /samba/OS3/
+482  sudo touch adrian{001..100}.txt /samba/OS3/
+483  ls  /samba/OS3/
+484  ls
+485  mv adrian* /samba/OS3/
+486   sudo mv adrian* /samba/OS3/
+487  ls samba/OS3/
+488  sudo chcon -R -t samba_share_t /samba/OS3
+489  sudo firewall-cmd --permanent --add-service=samba
+490  sudo firewall-cmd --reload
+491  sudo vim /etc/samba/
+492  cd etc/samba/
+493  ls
+494  sudo vim smb.conf
+495  sudo systemctl enable --now smb nmb
+496  ip a
+497  sudo smbpasswd -a 20252720
+498  sudo smbpasswd -a jdeaza
+499  history
+
+windows
+Abre Ejecutar (Win + R) y pon: \\IP_DEL_SERVIDOR\OS3_Samba
+Haz clic derecho sobre la carpeta de samba y presionar conectar unidad de red elige la letra y finalizar
+modificar archivo y guardarlo
+confirmar en red hat
