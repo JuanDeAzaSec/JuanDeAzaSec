@@ -12,13 +12,13 @@ Apasionado por la seguridad defensiva, el análisis de amenazas y las operacione
 * **Objetivo:** Certified Junior Cybersecurity Analyst (CJCA).
 * **Foco técnico:** Fundamentos de Linux, análisis de sistema de archivos, escalada de privilegios básica y comandos de auditoría.
 * **Repositorios/Writeups:** 
-  * [`[/htb-notes](https://github.com/JuanDeAzaSec/JuanDeAzaSec/tree/main/readme.md/%20Hack%20The%20Box%20%E2%80%94%20CJCA%20Path)`](./) — Apuntes prácticos, cheat sheets de terminal y resolución de módulos.
+  *[Access Folder](https://github.com/JuanDeAzaSec/JuanDeAzaSec/tree/main/readme.md/%20Hack%20The%20Box%20%E2%80%94%20CJCA%20Path) Apuntes prácticos, cheat sheets de terminal y resolución de módulos.
 
 ### 2. 🌐 Cisco — Junior Cybersecurity Analyst *(En Progreso)*
 * **Objetivo:** Dominio de arquitectura de red defensiva, monitoreo de tráfico y respuesta a incidentes a nivel junior.
 * **Foco técnico:** Capas 2/3, análisis de capturas en Wireshark, lógica de SIEM y políticas de seguridad.
 * **Repositorios/Writeups:**
-  * [`https://github.com/JuanDeAzaSec/JuanDeAzaSec/tree/main/readme.md/Cisco%20%E2%80%94%20Junior%20Cybersecurity%20Analyst`](./) — Análisis de capturas de red (`.pcap`) y esquemas de topologías defensivas.
+  * [Access Folder](https://github.com/JuanDeAzaSec/JuanDeAzaSec/tree/main/readme.md/Cisco%20%E2%80%94%20Junior%20Cybersecurity%20Analyst) — Análisis de capturas de red (`.pcap`) y esquemas de topologías defensivas.
 
 ### 3. ⏳ Let'sDefend — SOC Analyst Track *(Próximo Paso)*
 * **Objetivo:** Entrenamiento práctico con alertas SOC reales, investigación de endpoints y triage de malware.
