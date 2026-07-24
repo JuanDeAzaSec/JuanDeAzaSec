@@ -24,6 +24,8 @@ Apasionado por la seguridad defensiva, el análisis de amenazas y las operacione
 * **Objetivo:** Entrenamiento práctico con alertas SOC reales, investigación de endpoints y triage de malware.
 * **Foco futuro:** Análisis de logs de autenticación, regla de detección y casos de estudio de incidentes.
 
+### 4. **Cisco CCNA 1**: 🏆 Completed*
+### 5.**Certified cibersecurity CC ISC2**: Certified!
 ---
 
 ## 🛠️ Herramientas & Entornos en Uso
