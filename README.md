@@ -12,7 +12,7 @@ Apasionado por la seguridad defensiva, el análisis de amenazas y las operacione
 * **Objetivo:** Certified Junior Cybersecurity Analyst (CJCA).
 * **Foco técnico:** Fundamentos de Linux, análisis de sistema de archivos, escalada de privilegios básica y comandos de auditoría.
 * **Repositorios/Writeups:** 
-  *[Access Folder](https://github.com/JuanDeAzaSec/JuanDeAzaSec/tree/main/readme.md/%20Hack%20The%20Box%20%E2%80%94%20CJCA%20Path) Apuntes prácticos, cheat sheets de terminal y resolución de módulos.
+  * [Access Folder](https://github.com/JuanDeAzaSec/JuanDeAzaSec/tree/main/readme.md/%20Hack%20The%20Box%20%E2%80%94%20CJCA%20Path) Apuntes prácticos, cheat sheets de terminal y resolución de módulos.
 
 ### 2. 🌐 Cisco — Junior Cybersecurity Analyst *(En Progreso)*
 * **Objetivo:** Dominio de arquitectura de red defensiva, monitoreo de tráfico y respuesta a incidentes a nivel junior.
