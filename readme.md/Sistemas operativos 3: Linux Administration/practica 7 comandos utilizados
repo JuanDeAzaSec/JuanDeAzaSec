@@ -89,3 +89,204 @@ Abre Ejecutar (Win + R) y pon: \\IP_DEL_SERVIDOR\OS3_Samba
 Haz clic derecho sobre la carpeta de samba y presionar conectar unidad de red elige la letra y finalizar
 modificar archivo y guardarlo
 confirmar en red hat
+
+
+
+
+
+Practica 1: compartir archivos entre linux utilizando NFS
+=========================================================
+sudo dnf install -y nfs-utils
+sudo mkdir -p /OS3
+sudo touch /OS3/Adrian{1..100}.txt
+
+sudo chmod -R 777 /OS3
+
+sudo nano /etc/exports
+	/OS3 *(rw,sync,no_root_squash)
+
+sudo exportfs -r -v
+sudo systemctl enable --now nfs-server
+
+sudo firewall-cmd --add-service=nfs --permanent
+sudo firewall-cmd --reload
+
+= cliente =
+sudo dnf install -y nfs-utils
+sudo mkdir -p /mnt/OS3
+
+sudo mount -t nfs <IP_DEL_SERVIDOR>:/OS3 /mnt/OS3
+
+ls /mnt/OS3
+
+sudo nano /etc/fstab
+
+<IP_DEL_SERVIDOR>:/OS3    /mnt/OS3    nfs    defaults,_netdev    0  0
+
+sudo umount /mnt/OS3
+sudo mount -a
+ls /mnt/OS3
+
+sudo reboot
+
+df -h | grep OS3
+ls /mnt/OS3
+
+==========================================================================
+Practica 2: Creacion de fileserver compatible con Windows utilizando SAMBA
+==========================================================================
+
+sudo dnf install -y samba samba-client
+sudo systemctl enable --now smb nmb
+
+sudo groupadd smbgroup
+sudo useradd -m -g smbgroup adrianuser
+sudo smbpasswd -a adrianuser
+
+sudo mkdir -p /samba/compartido
+sudo chown -R adrianuser:smbgroup /samba/compartido
+sudo chmod -R 775 /samba/compartido
+
+sudo chcon -t samba_share_t /samba/compartido
+
+sudo touch /samba/compartido/adrian{1..100}
+sudo chown adrianuser:smbgroup /samba/compartido/adrian*
+
+sudo nano /etc/samba/smb.conf
+[Compartido]
+   path = /samba/compartido
+   valid users = @smbgroup
+   guest ok = no
+   writable = yes
+   browsable = yes
+
+testparm
+sudo systemctl restart smb nmb
+
+sudo firewall-cmd --add-service=samba --permanent
+sudo firewall-cmd --reload
+
+1. Mapear la unidad de red
+
+Abra el Explorador de archivos en Windows.
+
+Vaya a Este equipo, haga clic en los tres puntos (...) o en la barra superior y seleccione Mapear red (o Conectar a unidad de red).
+
+Seleccione la letra de unidad deseada (por ejemplo, Z:).
+
+En el campo Carpeta, ingrese:
+\\<IP_DEL_SERVIDOR_LINUX>\Compartido
+
+Marque la casilla Conectar usando credenciales diferentes y presione Finalizar.
+
+Ingrese el usuario adrianuser y la contraseña configurada previamente en Samba.
+
+2. Edición del archivo adrian99
+
+Ingrese a la unidad mapeada Z: y ubique el archivo adrian99.
+
+Ábralo con el Bloc de notas (o cualquier editor de texto).
+
+Escriba la frase exacta: el zumzum de la carabela
+
+Guarde los cambios (Ctrl + G) y cierre el archivo.
+
+= verificacion en Linux -
+cat /samba/compartido/adrian99
+
+==================================================================
+Practica 3: Creacion de controlador de Dominio con cliente Windows
+==================================================================
+
+sudo hostnamectl set-hostname dc1.so3.inet
+
+sudo nano /etc/hosts
+<IP_DEL_SERVIDOR>   dc1.so3.inet   dc1   SO3.INET
+
+sudo dnf install -y samba-client krb5-workstation
+
+sudo rm -f /etc/samba/smb.conf
+
+sudo dnf install -y epel-release
+sudo dnf install -y samba-dc-libs samba-winbind
+
+sudo rm -f /etc/samba/smb.conf
+
+sudo useradd -m lanegracubana
+sudo smbpasswd -a lanegracubana
+
+sudo nano /etc/samba/smb.conf
+[global]
+   workgroup = SO3
+   netbios name = NODO1
+   server string = Servidor Samba SO3
+   
+   # Modo Controlador de Dominio NT4
+   domain logons = yes
+   domain master = yes
+   local master = yes
+   preferred master = yes
+   os level = 65
+   
+   security = user
+   passdb backend = tdbsam
+
+[netlogon]
+   path = /var/lib/samba/netlogon
+   read only = yes
+   guest ok = yes
+
+sudo smbpasswd -a lanegracubana
+
+sudo mkdir -p /var/lib/samba/netlogon
+sudo systemctl restart smb nmb
+sudo systemctl enable smb nmb
+
+sudo firewall-cmd --add-service=samba --permanent
+sudo firewall-cmd --reload
+
+Paso Final: Unir Windows y Autenticar
+1. Configurar la red en Windows
+
+En la máquina virtual con Windows, abre Conexiones de red (puedes presionar Win + R, escribir ncpa.cpl y presionar Enter).
+
+Haz clic derecho sobre tu adaptador de red activo y selecciona Propiedades.
+
+Selecciona Protocolo de Internet versión 4 (TCP/IPv4) y haz clic en Propiedades.
+
+En la opción Servidor DNS preferido, coloca la dirección IP de tu servidor Red Hat 10.
+
+2. Unir el equipo al Dominio SO3
+
+Presiona Win + R, escribe sysdm.cpl y presiona Enter para abrir las Propiedades del Sistema.
+
+En la pestaña Nombre de equipo, haz clic en el botón Cambiar...
+
+En la sección Miembro de, selecciona Dominio e ingresa:
+SO3
+
+Haz clic en Aceptar.
+
+Cuando la ventana emergente pida las credenciales para unirse al dominio, ingresa:
+
+Usuario: lanegracubana
+
+Contraseña: 20252751
+
+Al recibir el mensaje de bienvenida al dominio SO3, presiona Aceptar y reinicia la VM de Windows.
+
+3. Prueba de autenticación (Demostración de la práctica)
+
+Una vez que la VM de Windows haya reiniciado, en la pantalla de bienvenida selecciona la opción Otro usuario (o Cambiar de usuario).
+
+Para iniciar sesión, escribe:
+
+Usuario: lanegracubana
+
+Contraseña: 20252751
+
+Al entrar al escritorio, abre una terminal de comando (cmd) en Windows y ejecuta:
+whoami
+
+(Deberá mostrar SO3\lanegracubana, lo cual confirma que el usuario está autenticado correctamente en el dominio).
+
