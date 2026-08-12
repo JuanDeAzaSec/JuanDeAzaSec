@@ -1,0 +1,73 @@
+practica1
+==========
+ver si hay actualizacion y actualizar
+> sudo dnf check-update
+> sudo dnf upgrade -y
+
+enumerar repositorios actuales
+> sudo dnf repolist
+
+buscar herramienta en el cache de repositorios
+> sudo dnf search bashtop
+
+habilitar repositorio epel
+> sudo dnf install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-10.noarch.rpm
+
+actualizar cache
+> sudo dnf makecache
+
+instalar bashtop
+> sudo dnf install bashtop -y
+
+desistalar bashtop
+> sudo dnf remove bashtop -y
+
+eliminar directorio de configuracion
+> rm -rf ~/.config/bashtop
+
+borrar dependencias huerfanas
+> sudo dnf autoremove -y
+
+==========
+Practica2
+==========
+ 
+iniciar cron
+> sudo crontab -e
+	crear trabajo
+	0 23 * * * dnf upgrade -y
+	0 3 * * 0 /sbin/shutdown -r now
+Esc, escriba :wq
+
+tarea de at
+> sudo dnf install at -y
+> sudo systemctl enable --now atd
+
+mostrar conteniddo de /tmp
+> ls -l /tmp
+
+programar la eliminacion del contenido
+> echo "rm -rf /tmp/* /tmp/.* 2>/dev/null" | sudo at now + 1 minute
+
+revisar cola con
+> sudo atq
+
+==========
+practica 3
+==========
+indenteficar y formatear disco en formato ext4
+> lsblk
+> sudo mkfs.ext4 /dev/sdb
+
+crer carpeta en el escritorio y montar la unidad previamente formateada
+> mkdir -p ~/Escritorio/mi_disco #creacion de directorio
+> sudo mount /dev/sdb ~/Escritorio/mi_disco #montar unidad
+> df -h | grep sdb # verificar el montaje
+
+crear el archivo denrro del punto de montaje
+> cd ~/Escritorio/mi_disco
+> sudo touch AdrianAlcantara.txt
+
+desmontar unidad y volver a mecarla en mnt
+> sudo umount ~/Escritorio/mi_disco #desmontar unidad
+>  sudo mount /dev/sdb /mnt # volver a montar en otro lado
