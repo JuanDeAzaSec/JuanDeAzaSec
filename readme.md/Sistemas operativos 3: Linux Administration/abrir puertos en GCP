@@ -1,0 +1,16 @@
+gcloud compute firewall-rules create <NOMBRE_REGLA> \
+    --direction=INGRESS \
+    --priority=1000 \
+    --network=default \
+    --action=ALLOW \
+    --rules=<PROTOCOLO>:<PUERTOS> \
+    --source-ranges=<ORIGEN>
+
+
+gcloud compute firewall-rules create allow-http-https \
+    --direction=INGRESS \
+    --priority=1000 \
+    --network=default \
+    --action=ALLOW \
+    --rules=tcp:80,tcp:443 \
+    --source-ranges=0.0.0.0/0
