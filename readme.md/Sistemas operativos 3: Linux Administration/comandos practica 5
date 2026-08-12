@@ -77,3 +77,201 @@ mkdir carpeta_1sin
   405  sudo pcs resource cleanup IP_Flotante
   406  sudo pcs status
   407  history
+
+
+
+
+
+Practica 1: Syncronizacion de carpetas con Rsync
+================================================
+
+= Servidor 1 =
+
+mkdir -p ~/sync_folder && cd ~/sync_folder
+touch archivo_{1..100}.txt
+
+rsync -avz -e ssh ~/sync_folder/ usuario@IP_SERVIDOR_REMOTO:/ruta/destino/
+
+cat << 'EOF' > ~/sync_script.sh
+#!/bin/bash
+rsync -avz -e ssh /ruta/origen/sync_folder/ usuario@IP_SERVIDOR_REMOTO:/ruta/destino/
+EOF
+
+chmod +x ~/sync_script.sh
+
+crontab -e
+	* * * * * /bin/bash /ruta/absoluta/sync_script.sh >/dev/null 2>&1
+
+touch ~/sync_folder/prueba_crontab.txt
+
+= Servidor 2 =
+
+ls -la /ruta/destino/
+
+
+===================================================
+Practica 2: Instalacion y configuracion del Cluster
+===================================================
+
+= Nodo 1 =
+sudo hostnamectl set-hostname nodo1
+
+= Nodo 2 =
+sudo hostnamectl set-hostname nodo2
+
+= en ambos =
+sudo nano /etc/hosts
+	ip nodo1
+	ip nodo2
+
+sudo dnf update -y --nogpgcheck
+sudo subscription-manager repos --enable=rhel-10-for-x86_64-highavailability-rpms
+sudo dnf install -y pacemaker corosync pcs --nogpgcheck
+
+sudo passwd hacluster
+
+= activacion de puertos =
+sudo firewall-cmd --permanent --add-service=high-availability
+sudo firewall-cmd --reload
+
+= nodo 1 =
+sudo pcs host auth nodo1 nodo2 -u hacluster
+
+= ambos =
+sudo pcs cluster setup ha_cluster nodo1 nodo2 --force
+sudo pcs cluster start --all
+sudo pcs cluster enable --all
+
+
+= nodo 1 =
+sudo pcs property set stonith-enabled=false
+sudo pcs property set no-quorum-policy=ignore
+
+
+sudo pcs resource create Virtual_IP ocf:heartbeat:IPaddr2 ip=10.0.0.200 cidr_netmask=24 nic=enp0s3 op monitor interval=10s
+
+sudo pcs status
+
+= en otra maquina windows o Linux probar disponibilidad =
+ping a la ip flotante
+y reiniciar la maquina de nodo 1
+
+===============================================
+Practica 3: Cluster de Alta Disponibilidad HTTP
+===============================================
+
+= en ambos =
+sudo dnf install -y nginx
+
+= servidor 1 =
+echo "<h1>Bienvenido a Server 1</h1>" | sudo tee /usr/share/nginx/html/index.html
+
+= servidor 2 =
+echo "<h1>Bienvenido a Server 2</h1>" | sudo tee /usr/share/nginx/html/index.html
+
+= ambos =
+= por si el puerto 80 esta ocupado =
+sudo systemctl stop httpd
+sudo systemctl disable httpd
+
+sudo systemctl enable --now nginx
+
+= usar apache en vez de ngix =
+=nodo1=
+echo "<h1>Bienvenido a Server 1</h1>" | sudo tee /var/www/html/index.html
+=nodo2=
+echo "<h1>Bienvenido a Server 2</h1>" | sudo tee /var/www/html/index.html
+
+=ambos=
+sudo systemctl enable --now httpd
+sudo nano /etc/keepalived/keepalived.conf
+Cambia esta línea dentro del bloque vrrp_script
+vrrp_script check_httpd {
+    script "killall -0 httpd"
+    interval 2
+    weight 2
+}
+Y en el bloque vrrp_instance
+track_script {
+        check_httpd
+    }
+= ambos =
+sudo dnf install -y keepalived
+
+sudo nano /etc/keepalived/keepalived.conf
+
+= nodo 1 =
+global_defs {
+    enable_script_security
+}
+
+vrrp_script check_nginx {
+    script "/usr/bin/killall -0 nginx"
+    interval 2
+    weight 2
+    user root
+}
+
+vrrp_instance VI_1 {
+    state MASTER
+    interface enp0s3
+    virtual_router_id 51
+    priority 101
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass 12345
+    }
+    virtual_ipaddress {
+        10.0.0.200/24
+    }
+    track_script {
+        check_nginx
+    }
+}
+
+= nodo 2 =
+global_defs {
+    enable_script_security
+}
+
+vrrp_script check_nginx {
+    script "/usr/bin/killall -0 nginx"
+    interval 2
+    weight 2
+    user root
+}
+
+vrrp_instance VI_1 {
+    state BACKUP
+    interface enp0s3
+    virtual_router_id 51
+    priority 100
+    advert_int 1
+    authentication {
+        auth_type PASS
+        auth_pass 12345
+    }
+    virtual_ipaddress {
+        10.0.0.200/24
+    }
+    track_script {
+        check_nginx
+    }
+}
+
+= ambos =
+
+sudo firewall-cmd --permanent --add-service=http
+sudo firewall-cmd --permanent --add-protocol=vrrp
+sudo firewall-cmd --reload
+
+sudo systemctl enable --now keepalived
+
+sudo setenforce 0
+sudo firewall-cmd --permanent --add-protocol=vrrp
+sudo firewall-cmd --permanent --add-service=http
+sudo firewall-cmd --reload
+
+= prueba final =
+sudo systemctl stop keepalived
