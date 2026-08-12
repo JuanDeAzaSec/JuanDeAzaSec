@@ -1,0 +1,20 @@
+1. Parámetros Generales de la InfraestructuraParámetroDetalle / ValorProveedor CloudGoogle Cloud Platform (GCP)Dirección IP Pública (PBX)35.194.16.36Red Interna (GCP)10.128.0.0 / 255.255.240.0Versión de Motor VoIPAsterisk 18Interfaz Web Admin[https://35.194.16.36](https://35.194.16.36)Matriz de Extensiones SIPExtensión 2220 (Profesor): Nombre: Profesor | Secret: Teletubies123$ | NAT: force_rport,comediaExtensión 2221 (Estudiante): Nombre: juandavid | Secret: david2720 | NAT: force_rport,comediaExtensión 2222 (Prueba Móvil): Nombre: pruebamovil | Secret: pruebamovil | NAT: force_rport,comedia2. Instalación y Servicios en el Servidor (SSH)Descarga e ejecución del script de instalación de Issabel 5:Bashwget http://repo.issabel.org/issabel5-netinstall.sh
+chmod +x issabel5-netinstall.sh
+./issabel5-netinstall.sh
+Selección de componentes interactivos:Versión de Asterisk: Asterisk 18.Paquetes adicionales: Mantener marcados los predeterminados (Issabel Network Licensed modules, Community Realtime Block List). Desmarcar Sangoma wanpipe drivers.Gestión de contraseñas de administración (en caso de timeout en sesión SSH):Bashsudo su -
+/usr/bin/issabel-admin-passwords --change
+Ajuste de servicios para entorno de laboratorio:Bash# Desactivar Fail2ban para evitar bloqueos de IP durante pruebas
+systemctl stop fail2ban
+systemctl disable fail2ban
+
+# Iniciar e habilitar Asterisk
+systemctl start asterisk
+systemctl enable asterisk
+3. Configuración de Reglas de Firewall en GCPPara permitir la señalización SIP y el transporte de medios de audio (RTP) desde clientes externos hacia la VM, ejecutar en Google Cloud Shell:Bashgcloud compute firewall-rules create allow-sip \
+    --direction=INGRESS \
+    --priority=1000 \
+    --network=default \
+    --action=ALLOW \
+    --rules=tcp:80,tcp:443,udp:5060,udp:5061,udp:10000-20000 \
+    --source-ranges=0.0.0.0/0
+Puertos habilitados:TCP 80, 443: Acceso a la interfaz web de Issabel.UDP 5060, 5061: Señalización de control de llamadas SIP.UDP 10000-20000: Rango de puertos para flujo de voz en tiempo real (RTP).4. Configuración de NAT y Extensiones en Issabel WebAcceder mediante navegador web a [https://35.194.16.36](https://35.194.16.36) e iniciar sesión con el usuario admin.Ajuste de NAT y Subred Interna (Solución de audio unidireccional y desconexión a los 10 segundos):Navegar a PBX $\rightarrow$ PBX Configuration $\rightarrow$ Settings $\rightarrow$ Asterisk SIP Settings.External Address: 35.194.16.36Local Networks: 10.128.0.0 / 255.255.240.0Hacer clic en Submit y posteriormente en el botón superior Apply Changes.Creación de Extensiones SIP:Navegar a PBX $\rightarrow$ PBX Configuration $\rightarrow$ Applications $\rightarrow$ Extensions.Seleccionar Generic SIP Device y presionar Submit.Configurar cada una de las extensiones (2220, 2221, 2222) con sus respectivos parámetros:User Extension: Número de extensión.Display Name: Identificador de usuario.secret: Clave de autenticación SIP.nat: Seleccionar Yes - (force_rport,comedia) (Requisito para instancias Cloud tras NAT).Presionar Submit en cada extensión y finalizar con Apply Changes.5. Configuración de Clientes SoftphoneA. MicroSIP (PC / Windows - Extensión 2221)Nombre de cuenta: Issabel GCPServidor SIP: 35.194.16.36Usuario: 2221Dominio: 35.194.16.36Contraseña: david2720Transporte: UDPB. Zoiper (Dispositivo Móvil - Extensión 2222)Nombre de usuario @ PBX: 2222@35.194.16.36Contraseña: pruebamovilHost / Proxy: 35.194.16.36Transporte: UDP6. Procedimiento de Prueba y VerificaciónValidar estado Online (indicador verde) en la interfaz de MicroSIP en la PC.Validar estado Registrado (indicador verde) en la aplicación Zoiper del móvil.Marcar el número 2222 desde el teclado de MicroSIP y presionar Llamar.Confirmar la entrada de señalización en el dispositivo móvil, establecer el canal y verificar el intercambio de audio bidireccional estable.
