@@ -1,45 +1,41 @@
-## Hi, I'm Juan David De Aza Mejia (SOC Analyst and Purple team Aspirant) 👋
+# Juan David De Aza Mejia
 
-# 🛡️ Cybersecurity & SOC Learning Hub
+**ISC2 CC Certified | Junior Infrastructure & Security Analyst**  
+Cybersecurity Technologist Student @ ITLA  
 
-Apasionado por la seguridad defensiva, el análisis de amenazas y las operaciones SOC. Actualmente enfocado en la resolución de laboratorios prácticos, análisis de tráfico y fundamentos de Blue Team y Red team.
-
----
-
-## 🎯 Enfoque Actual & Rutas de Certificación
-
-### 1. 🧪 Hack The Box — CJCA Path *(En Progreso)*
-* **Objetivo:** Certified Junior Cybersecurity Analyst (CJCA).
-* **Foco técnico:** Fundamentos de Linux, análisis de sistema de archivos, escalada de privilegios básica y comandos de auditoría.
-* **Repositorios/Writeups:** 
-  * [Access Folder](https://github.com/JuanDeAzaSec/JuanDeAzaSec/tree/main/readme.md/%20Hack%20The%20Box%20%E2%80%94%20CJCA%20Path) Apuntes prácticos, cheat sheets de terminal y resolución de módulos.
-
-### 2. 🌐 Cisco — Junior Cybersecurity Analyst *(En Progreso)*
-* **Objetivo:** Dominio de arquitectura de red defensiva, monitoreo de tráfico y respuesta a incidentes a nivel junior.
-* **Foco técnico:** Capas 2/3, análisis de capturas en Wireshark, lógica de SIEM y políticas de seguridad.
-* **Repositorios/Writeups:**
-  * [Access Folder](https://github.com/JuanDeAzaSec/JuanDeAzaSec/tree/main/readme.md/Cisco%20%E2%80%94%20Junior%20Cybersecurity%20Analyst) — Análisis de capturas de red (`.pcap`) y esquemas de topologías defensivas.
-
-### 3. ⏳ Let'sDefend — SOC Analyst Track *(Próximo Paso)*
-* **Objetivo:** Entrenamiento práctico con alertas SOC reales, investigación de endpoints y triage de malware.
-* **Foco futuro:** Análisis de logs de autenticación, regla de detección y casos de estudio de incidentes.
-
-### 4. **Cisco CCNA 1**: 🏆 Completed*
-### 5.**Certified cibersecurity CC ISC2**: Certified!
----
-
-## 🛠️ Herramientas & Entornos en Uso
-
-* **Sistemas:** Linux (Red Hat Linux Enterprise), Windows Server.
-* **Redes & Análisis:** Wireshark, Cisco Packet Tracer, Nmap.
-* **Defensa & Documentación:** Markdown, Git/GitHub.
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-JuanDeAzaSec-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/juandeazasec/)
+[![Credly](https://img.shields.io/badge/Credly-ISC2_CC-FF6F00?style=flat&logo=credly)](https://www.credly.com/users/juan-david-de-aza)
 
 ---
 
-## 📌 Enlaces Rápidos
-* 🐙 **GitHub:** [JuanDeAzaSec](https://github.com/JuanDeAzaSec)
-* 📑 **Writeups & Documentación:** Revisa las carpetas del repositorio para ver resúmenes técnicos e ingeniería inversa de labs.
+## 📌 Enfoque Operativo
 
-## Sistemas operativos 3: Linux Administration 
-Professional Linux system administration aligned with LPIC-1/2/3 and Red Hat (RHCSA EX200/EX294) standards. Moving from basic system profiling to advanced Infrastructure-as-Code (IaC).
-[Access Folder](https://github.com/JuanDeAzaSec/JuanDeAzaSec/tree/main/readme.md/Sistemas%20operativos%203%3A%20Linux%20Administration)
+- **Enterprise Linux (Sistemas Operativos 3):** Administración en consola con **Rocky Linux 9**. Gestión de almacenamiento con LVM, control de servicios mediante `systemd`, permisos de usuarios/grupos y diagnóstico de red.
+- **Redes Cisco (CCNA Track):** Fundamentos y diseño de redes desde cero: direccionamiento IPv4/IPv6, subnetting VLSM, configuración de VLANs, enlaces troncales (802.1Q) y enrutamiento básico en Packet Tracer.
+- **Operaciones de Seguridad:** Principios defensivos corporativos respaldados por la credencial **ISC2 CC**, orientados a monitorización, análisis de eventos y soporte en entornos SOC/NOC.
+
+---
+
+## 🛠️ Entornos y Herramientas
+
+- **Sistemas Operativos:** Rocky Linux 9 (RHEL-based), Linux CLI, Bash.
+- **Redes & Análisis:** Cisco Packet Tracer, Wireshark, direccionamiento IP (VLSM).
+- **Documentación & Control de Versiones:** Markdown, Git, GitHub.
+
+---
+
+## 📂 Repositorios Técnicos (Runbooks & Labs)
+
+- [rocky-linux-administration](https://github.com/JuanDeAzaSec/rocky-linux-administration)  
+  *Documentación técnica, procedimientos paso a paso y laboratorios de administración en Rocky Linux 9.*
+
+- [cisco-networking-labs](https://github.com/JuanDeAzaSec/cisco-networking-labs)  
+  *Topologías, hojas de cálculo VLSM y configuraciones prácticas del track oficial CCNA.*
+
+---
+
+## 🎯 Certificaciones & Credenciales
+
+- **ISC2 Certified in Cybersecurity (CC)** — *Certificado*
+- **Cisco CCNA** — *En preparación*
+- **Hack The Box Certified Junior Cybersecurity Analyst (CJCA)** — *Ruta técnica en curso*
