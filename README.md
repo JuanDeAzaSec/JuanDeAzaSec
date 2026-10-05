@@ -26,10 +26,10 @@ Cybersecurity Technologist Student @ ITLA
 
 ## 📂 Repositorios Técnicos (Runbooks & Labs)
 
-- [rocky-linux-administration](https://github.com/JuanDeAzaSec/rocky-linux-administration)  
+- [rocky-linux-administration](https://github.com/JuanDeAzaSec/JuanDeAzaSec/tree/main/rocky-linux-administration)  
   *Documentación técnica, procedimientos paso a paso y laboratorios de administración en Rocky Linux 9.*
 
-- [cisco-networking-labs](https://github.com/JuanDeAzaSec/cisco-networking-labs)  
+- [cisco-networking-labs](https://github.com/JuanDeAzaSec/JuanDeAzaSec/tree/main/cisco-networking-labs)  
   *Topologías, hojas de cálculo VLSM y configuraciones prácticas del track oficial CCNA.*
 
 ---
